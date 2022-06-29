@@ -1,18 +1,12 @@
-const input = document.getElementById('input') as HTMLInputElement;
 
-input.addEventListener('input', (event) => {
-    const inputText = event.currentTarget as HTMLInputElement;
-    console.log(input.value);
-})
-
-function addElementsInList<T>(array: any[], value:T ) {
+function addElementsInList<T>(array: any[], value: T) {
     return array.map(item => item + value);
 }
 
 addElementsInList([1, 2, 3], 2)
 //types
-function sum(number1: number, number2: number){ 
-   return number1 + number2;
+function sum(number1: number, number2: number) {
+    return number1 + number2;
 }
 
 
@@ -26,7 +20,7 @@ interface IUser {
 }
 
 interface IAdmin extends IUser {
-    cargo: 'Super' | 'Cordenador' | 'Supervisor';
+    cargo?: 'Super' | 'Cordenador' | 'Supervisor' | 'funcionario';
 }
 
 function redirecione(user: IUser | IAdmin) {
@@ -35,6 +29,15 @@ function redirecione(user: IUser | IAdmin) {
     }
     // redirecionar para area de usuarios
 }
+
+function redirecionarArea(user: IAdmin) {
+    if (user.cargo) {
+        //tem cargo vai pra sua area
+    }
+    // nao tem cargo vai pra area comun
+}
+
+
 interface IAnimal {
     name: string;
     type: 'terrestre' | 'aquático' | 'voador';
@@ -77,6 +80,58 @@ const animal2: IDomestico = {
 
 }
 
+//readonly
+
+interface IAnimalDomestico {
+    name: string;
+    age: number;
+    favoriteToy?: string;
+}
+
+class MyDog implements IAnimalDomestico {
+    name: string;
+    age: number;
+    favoriteToy?: string | undefined;
+
+    constructor(name: string, age: number, ...string: string[]) {
+        this.name = name
+        this.age = age
+        this.favoriteToy = string[0]
+    }
+}
+
+type CachorroSomenteLeitura = {
+    +readonly [k in keyof IAnimalDomestico]-?: IAnimalDomestico[k]
+}
+
+const cao = new MyDog('bryan', 22)
+
+console.log(cao.favoriteToy)
 
 console.log(felino.executeRoar(23))
 console.log(animal2)
+
+interface IEstudante {
+    name: string;
+    idade: number;
+}
+
+interface IEstudante {
+    serie: string;
+}
+
+const estudante: IEstudante = {
+    name: "",
+    idade: 0,
+    serie: ""
+}
+
+import $ from 'jquery';
+
+$.fn.extend({
+    novaFuncao() {
+        console.log('Chamou nova funcao')
+    }
+});
+
+$('body').novaFuncao();

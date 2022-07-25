@@ -135,3 +135,39 @@ $.fn.extend({
 });
 
 $('body').novaFuncao();
+
+interface IPessoa {
+    name: string;
+    idade: number;
+    nacionalidade: string;
+}
+
+interface IBrasileiro extends Omit<IPessoa, 'nacionalidade'> {
+
+}
+
+const brasileiro: IBrasileiro = {
+    name: '',
+    idade: 0
+}
+
+
+interface IPropriets {
+    name: string;
+    age: number;
+    ocupation: string;
+    acountType: string;
+}
+
+class EmployeeComon implements Omit<IPropriets, 'acountType'>{
+    name: string;
+    age: number;
+    ocupation: string;
+    constructor(name: string, age:number, ocupation: string) {
+        this.name = name
+        this.age = age
+        this. ocupation = ocupation
+    }
+
+
+}
